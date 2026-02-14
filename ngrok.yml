@@ -1,0 +1,7 @@
+version: 2
+authtoken: 39endzIZkpjEyKa5yQk6cXzxPW4_iNoo9m4kg1THqByEYMBS
+tunnels:
+  ollama:
+    proto: http
+    addr: 11434
+    host_header: localhost:11434

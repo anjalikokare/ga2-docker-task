@@ -1,0 +1,12 @@
+version: 2
+authtoken: 39endzIZkpjEyKa5yQk6cXzxPW4_iNoo9m4kg1THqByEYMBS
+tunnels:
+  ollama:
+    proto: http
+    addr: 11434
+    host_header: localhost:11434
+    extra_management_headers:
+       - "X-Email: 24f2002015@ds.study.iitm.ac.in"
+    labels: []
+    # Note: Ngrok doesn't easily support adding custom response headers via YAML for simple HTTP tunnels without an Edge or specific config
+    # However, we can try to pass them via command line while using the config file for token
