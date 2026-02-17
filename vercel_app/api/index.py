@@ -126,7 +126,10 @@ async def get_metrics(payload: Dict = Body(...)):
         }
     return {"regions": results}
 
-# 3. SecureUpload (POST /api/upload)
+@app.get("/localtunnel-email")
+def get_localtunnel_email():
+    return PlainTextResponse("24f2002015@ds.study.iitm.ac.in")
+
 @app.post("/api/upload")
 async def upload_file(
     file: UploadFile = File(...),

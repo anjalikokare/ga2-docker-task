@@ -1,0 +1,21 @@
+version: 2
+authtoken: 39endzIZkpjEyKa5yQk6cXzxPW4_iNoo9m4kg1THqByEYMBS
+tunnels:
+  dashboard:
+    proto: http
+    addr: 8080
+  upload:
+    proto: http
+    addr: 8003
+  ollama:
+    proto: http
+    addr: 8002
+  students:
+    proto: http
+    addr: 8004
+  latency:
+    proto: http
+    addr: 8005
+  worker:
+    proto: http
+    addr: 8006

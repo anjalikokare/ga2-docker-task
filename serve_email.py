@@ -1,14 +1,13 @@
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'text/plain')
-        # Bypassing localtunnel reminder if possible via headers (though we can't control grader)
-        self.send_header('Bypass-Tunnel-Reminder', 'true')
-        self.end_headers()
-        self.wfile.write(b'24f2002015@ds.study.iitm.ac.in')
+app = FastAPI()
 
-httpd = HTTPServer(('localhost', 8080), SimpleHTTPRequestHandler)
-print("Server started on port 8080...")
-httpd.serve_forever()
+@app.get("/")
+def get_email():
+    # Returning JSON might bypass the localtunnel "browser" check
+    return {"email": "24f2002015@ds.study.iitm.ac.in"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8011)

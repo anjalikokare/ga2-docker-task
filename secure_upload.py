@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Header, HTTPException
+from fastapi import FastAPI, UploadFile, File, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import io
@@ -16,10 +16,21 @@ app.add_middleware(
     expose_headers=["*"]
 )
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    logger.info(f"Incoming request: {request.method} {request.url}")
+    response = await call_next(request)
+    logger.info(f"Response status: {response.status_code}")
+    return response
+
 TOKEN = "3g67xlm4rvxgssg6"
 MAX_SIZE = 52 * 1024  # 52KB
 
-@app.post("/")
+@app.post("/upload")
 async def upload_file(
     file: UploadFile = File(...),
     x_upload_token_9970: str = Header(None)
@@ -81,5 +92,4 @@ async def upload_file(
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
-
+    uvicorn.run(app, host="0.0.0.0", port=8010)
