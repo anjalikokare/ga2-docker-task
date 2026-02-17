@@ -4,3 +4,8 @@ __pycache__/
 .env
 .venv
 ts-node-b59c25a4d0.json
+*.exe
+*.log
+*.zip
+Docker Desktop Installer.exe
+cloudflared.exe
